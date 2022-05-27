@@ -1,0 +1,17 @@
+syntax = "proto3";
+package my_grpc_service;
+
+message MyGrpcResponse{
+    double SomeDouble = 1;
+    string SomeString = 2;
+}
+
+message MyGrpcRequest{
+    string SomeString = 1;
+}
+
+service MyGrpcService{
+    rpc SendAndGetData (MyGrpcRequest) returns (MyGrpcResponse); 
+    rpc GetLotsOfData (MyGrpcRequest) returns (stream MyGrpcResponse);
+    rpc SendLotsOfData (stream MyGrpcRequest) returns (MyGrpcResponse);
+}
